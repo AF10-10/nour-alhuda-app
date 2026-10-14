@@ -1,0 +1,3290 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap');
+
+:root {
+    --primary: #1a5c3a;
+    --secondary: #2d8a5e;
+    --bg: #f0f4f0;
+    --white: #ffffff;
+    --text-color: #2c2c2c;
+    --accent: #c9973a;
+    --card-shadow: 0 8px 32px rgba(26,92,58,0.10);
+    --radius: 20px;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Tajawal', 'Segoe UI', sans-serif;
+    margin: 0;
+    direction: rtl;
+    font-size: 15px;
+}
+
+/* الهيدر */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+    background: linear-gradient(135deg, #1a5c3a 0%, #2d8a5e 100%);
+    box-shadow: 0 4px 20px rgba(26,92,58,0.25);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 64px;
+}
+
+.menu-btn .bar {
+    background-color: #ffffff;
+}
+
+.dark-mode-toggle-icon {
+    color: #fff !important;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 10px 16px;
+    margin: 14px 15px 0;
+    background: linear-gradient(135deg, rgba(26,92,58,0.07) 0%, rgba(45,138,94,0.13) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(26,92,58,0.15);
+    box-shadow: 0 2px 12px rgba(26,92,58,0.07);
+    text-align: center;
+}
+
+#hijri-date {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.3px;
+}
+
+#gregorian-date {
+    font-size: 0.82rem;
+    color: #888;
+    font-weight: 400;
+}
+
+body.dark-theme .date-container {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.08);
+}
+
+
+.hijri-date {
+    color: #52b788; /* نفس درجة اللون الأخضر في موقعك */
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.gregorian-date {
+    color: #888;
+    font-size: 0.85em;
+}
+
+/* في الوضع الليلي */
+body.dark-theme .date-container-modern {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-btn { cursor: pointer; display: flex; flex-direction: column; gap: 5px; width: 30px; }
+.bar { width: 25px; height: 3px; background-color: var(--primary); border-radius: 2px; }
+
+/* المنيو */
+.side-menu {
+    position: fixed; top: 0; right: -300px; width: 260px; height: 100%;
+    background: var(--white); box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2000; padding: 20px;
+    overflow-y: auto;        /* لتمكين التمرير الرأسي وإظهار البكرة عند زيادة العناصر */
+    max-height: 100vh;       /* لجعل أقصى ارتفاع للقائمة بطول الشاشة بالكامل */
+    -webkit-overflow-scrolling: touch;
+}
+.side-menu.active { right: 0; }
+.close-btn { font-size: 28px; color: #e63946; cursor: pointer; text-align: left; }
+.menu-header { font-size: 22px; font-weight: bold; margin: 20px 0; color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 10px; }
+.menu-items a { display: block; padding: 15px; text-decoration: none; color: var(--text-color); border-bottom: 1px solid #f0f0f0; transition: 0.3s; }
+.menu-items a:hover { background: #f9f9f9; padding-right: 20px; }
+
+.counter-box {
+    width: 200px;
+    height: 200px;
+    margin: 30px auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 35% 35%, #fff 60%, #e8f5ee 100%);
+    border: none;
+    box-shadow:
+        0 0 0 10px rgba(26,92,58,0.10),
+        0 0 0 18px rgba(26,92,58,0.06),
+        0 20px 50px rgba(26,92,58,0.18);
+    cursor: pointer;
+    transition: transform 0.12s ease;
+}
+
+.counter-box:active {
+    transform: scale(0.93);
+}
+
+.counter-display {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--primary);
+    letter-spacing: -2px;
+    user-select: none;
+}
+
+body.dark-theme .counter-box {
+    background: radial-gradient(circle at 35% 35%, #1e2e24 60%, #111 100%);
+    box-shadow:
+        0 0 0 10px rgba(74,222,128,0.08),
+        0 0 0 18px rgba(74,222,128,0.04),
+        0 20px 50px rgba(0,0,0,0.5);
+}
+
+body.dark-theme .counter-display {
+    color: #4ade80;
+    text-shadow: 0 0 20px rgba(74,222,128,0.4);
+}
+
+.zekr-card {
+    background: #fff;
+    border: none;
+    border-radius: 22px;
+    padding: 32px 20px 20px;
+    min-height: 160px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(26,92,58,0.10);
+    font-size: 1.15rem;
+    line-height: 1.75;
+    position: relative;
+    transition: box-shadow 0.3s;
+    
+}
+
+body.dark-theme .zekr-card {
+    background: #1a2420;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+/* الختمة */
+.ramadan-card {
+    background: linear-gradient(135deg, #2d6a4f, #1b4332); color: white;
+    padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(45,106,79,0.3);
+}
+
+/* المطور */
+.dev-card-modern {
+    background: white; padding: 30px; border-radius: 20px; text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.dev-avatar-ring {
+    width: 90px; height: 90px; border: 3px dashed var(--primary);
+    border-radius: 50%; margin: 0 auto 15px; padding: 5px;
+}
+.dev-avatar-main {
+    width: 100%; height: 100%; background: #eee; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 40px;
+}
+.wa-btn {
+    display: inline-block; background: #25D366; color: white; padding: 12px 25px;
+    border-radius: 50px; text-decoration: none; margin-top: 15px; font-weight: bold;
+}
+
+/* الأزرار */
+.btn-main { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 15px; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 10px rgba(45,106,79,0.2); }
+.btn-reset { background: #e63946; color: white; border: none; padding: 10px 25px; border-radius: 10px; margin-top: 15px; cursor: pointer; }
+
+/* الوضع الليلي */
+body.dark-theme { background-color: #121212; color: #eee; }
+.dark-theme .main-header, .dark-theme .side-menu, .dark-theme .zekr-card, .dark-theme .dev-card-modern, .dark-theme .mood-container { background: #1e1e1e !important; color: white; }
+
+.mood-container {
+    background: #fff;
+    margin: 14px 0;
+    padding: 18px;
+    border-radius: 20px;
+    box-shadow: 0 4px 18px rgba(26,92,58,0.07);
+    border: 1px solid rgba(26,92,58,0.08);
+}
+
+.mood-title {
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.mood-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.mood-buttons button {
+    padding: 13px 10px;
+    border: 1.5px solid rgba(26,92,58,0.12);
+    border-radius: 14px;
+    cursor: pointer;
+    background: #f7fbf8;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.mood-buttons button:active {
+    transform: scale(0.96);
+    background: #e8f5ee;
+}
+
+.container { padding: 10px 20px 100px; max-width: 500px; margin: 0 auto; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* 1. تلوين القائمة في الوضع الليلي */
+body.dark-theme .menu-items a { color: #ffffff !important; }
+body.dark-theme .menu-header { color: #4ade80; }
+
+/* 2. تنسيق أزرار المطور الجديدة */
+.protected-name { color: var(--primary); }
+.dua-card { 
+    background: #f0fdf4; border: 1px dashed var(--primary); 
+    padding: 15px; border-radius: 12px; margin: 15px 0; 
+    color: var(--primary); font-size: 14px; line-height: 1.5;
+}
+.dark-theme .dua-card { background: #1b4332; color: #fff; border-color: #4ade80; }
+
+.wa-btn { background-color: #25D366 !important; margin-bottom: 10px; display: block; text-decoration: none; color: white; padding: 12px; border-radius: 10px; font-weight: bold; }
+.community-btn { background-color: #128C7E !important; display: block; text-decoration: none; color: white; padding: 12px; border-radius: 10px; font-weight: bold; }
+
+/* 3. تلوين زر الأذكار المختار (v1) */
+.cat-btn.active-category {
+    background: var(--primary) !important;
+    color: white !important;
+}
+
+/* --- تعديلات شكل أزرار الأذكار v1 --- */
+.category-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.cat-btn {
+    padding: 12px 22px;
+    border: 2px solid #2d6a4f; /* لون أخضر أساسي */
+    background: #ffffff;
+    color: #2d6a4f;
+    border-radius: 50px; /* الشكل البيضاوي المميز */
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* شكل الزرار لما تختاره */
+.cat-btn.active-category {
+    background: #2d6a4f !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(45,106,79,0.4);
+    transform: scale(1.05); /* تكبير بسيط للزر المختار */
+}
+
+/* تنسيق الأزرار في الوضع الليلي */
+.dark-theme .cat-btn {
+    background: #1e1e1e;
+    border-color: #4ade80;
+    color: #4ade80;
+}
+
+.dark-theme .cat-btn.active-category {
+    background: #4ade80 !important;
+    color: #121212 !important;
+}
+
+/* تنسيق قسم الحالة النفسية */
+.mood-container {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.mood-buttons button {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* الوضع الليلي لقسم الحالة النفسية - مريح للعين */
+body.dark-theme .mood-container {
+    background: #1e1e1e !important;
+    border: 1px solid #333;
+}
+
+body.dark-theme .mood-title {
+    color: #4ade80 !important;
+}
+
+body.dark-theme .mood-buttons button {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #eee;
+}
+
+body.dark-theme .mood-buttons button:hover {
+    background: #3d3d3d;
+    border-color: #4ade80;
+}
+
+body.dark-theme #gregorian-date {
+    color: #bbb !important; /* لون رمادي فاتح عشان يظهر */
+}
+
+body.dark-theme #hijri-date {
+    color: #4ade80 !important; /* لون أخضر فوسفوري للهجري في الضلمة */
+}
+
+/* وضوح التاريخ في كل الأوضاع */
+#hijri-date { display: block !important; visibility: visible !important; }
+.dark-theme #gregorian-date { color: #aaaaaa !important; }
+
+
+/* تأثير ظهور المحتوى */
+.tab-content.active {
+    display: block;
+    animation: smoothAppear 0.5s ease-out;
+}
+
+@keyframes smoothAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* نبض دائرة السبحة عند الضغط */
+.counter-box {
+    transition: transform 0.1s ease;
+}
+
+.counter-box:active {
+    transform: scale(0.95);
+}
+
+/* تأثير خارجي ناعم */
+.counter-box {
+    box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.4);
+    animation: pulseShadow 2s infinite;
+}
+
+@keyframes pulseShadow {
+    0% { box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(45, 106, 79, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(45, 106, 79, 0); }
+}
+
+/* حركة الأزرار عند تمرير الماوس */
+.btn-main, .cat-btn, .mood-buttons button {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.btn-main:hover, .mood-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1) !important;
+}
+
+.btn-main:active {
+    transform: translateY(0);
+}
+
+.side-menu {
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.zekr-card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-right: 8px solid var(--primary);
+}
+
+body.dark-theme .zekr-card {
+    background: linear-gradient(145deg, #1e1e1e, #252525);
+    border-right-color: #4ade80;
+}
+
+/* --- تجميل دائرة السبحة في الوضع الليلي --- */
+body.dark-theme .counter-box {
+    background: radial-gradient(circle, #1e1e1e 0%, #121212 100%) !important;
+    border-color: #4ade80 !important;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.2), inset 0 0 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-theme .counter-display {
+    color: #4ade80 !important;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5); /* وهج خفيف للرقم */
+}
+
+/* حركة الوميض للدائرة في الليلي عند التسبيح */
+body.dark-theme .counter-box:active {
+    border-color: #ffffff !important;
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.4) !important;
+}
+
+/* تنسيق ورد التسبيح */
+.tasbih-target {
+    text-align: center;
+    margin: 10px 0 20px;
+    animation: fadeIn 0.8s ease;
+}
+
+.tasbih-target p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.golden-text {
+    color: #d4a373; /* لون ذهبي هادئ */
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 0;
+}
+
+/* التنسيق في الوضع الليلي ليصبح ذهبي براق */
+body.dark-theme .golden-text {
+    color: #ffca28 !important; 
+    text-shadow: 0 0 10px rgba(255, 202, 40, 0.4);
+}
+
+body.dark-theme .tasbih-target p {
+    color: #bbb;
+}
+
+/* حاوية التحديات الكبرى */
+.tasbih-challenges {
+    margin: 30px auto;
+    padding: 0 15px;
+    max-width: 500px; /* لضمان شكل متناسق على كل الشاشات */
+}
+
+.challenge-main-title {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* شكل الكارت الاحترافي */
+.challenge-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-right: 5px solid #d4a373; /* الخط الجانبي الجمالي */
+    animation: slideIn 0.5s ease forwards;
+}
+
+/* التنسيق في الوضع الليلي */
+body.dark-theme .challenge-card {
+    background: #252525;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-right-color: #ffca28;
+}
+
+/* معلومات التحدي داخل الكارت */
+.challenge-info {
+    flex: 1; /* عشان ياخد المساحة المتاحة ويزق الزرار لليسار */
+    text-align: right;
+}
+
+.challenge-info p {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0;
+}
+
+.challenge-info h4 {
+    color: #d4a373;
+    font-size: 1.1rem;
+    margin: 8px 0 0;
+    line-height: 1.4;
+}
+
+body.dark-theme .challenge-info h4 {
+    color: #ffca28;
+}
+
+/* زر قبول التحدي */
+.challenge-btn {
+    background: var(--primary, #2d6a4f);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    min-width: 100px;
+    margin-right: 15px;
+}
+
+.challenge-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* حالة اكتمال التحدي */
+.challenge-card.completed {
+    opacity: 0.8;
+    border-right-color: #4ade80 !important;
+    background: #f0fff4;
+}
+
+body.dark-theme .challenge-card.completed {
+    background: #1a2e1f;
+}
+
+.challenge-card.completed .challenge-btn {
+    background: #4ade80;
+    cursor: default;
+}
+
+/* أنيميشن الظهور */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes successPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.completed {
+    animation: successPop 0.4s ease-out;
+}
+
+
+/* تنسيق قسم الختمة */
+.subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+.ramadan-plans {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.plan-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: slideUp 0.6s ease forwards;
+    border-left: 6px solid var(--primary);
+}
+
+body.dark-theme .plan-card {
+    background: #252525;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+}
+
+.plan-tag {
+    background: rgba(45, 106, 79, 0.1);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.plan-header h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+body.dark-theme .plan-header h3 {
+    color: #eee;
+}
+
+.plan-body p {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.plan-detail {
+    background: #f9f9f9;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+body.dark-theme .plan-detail {
+    background: #333;
+}
+
+.plan-detail i {
+    color: #d4a373;
+}
+
+.plan-detail span strong {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* ألوان الحواف المتميزة */
+.gold-border { border-left-color: #ffd700; }
+.silver-border { border-left-color: #c0c0c0; }
+.bronze-border { border-left-color: #cd7f32; }
+
+/* أنيميشن الظهور من الأسفل */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* تنسيق مقدمة فضل القرآن */
+.quran-intro {
+    background: rgba(45, 106, 79, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 0 15px 25px;
+    text-align: center;
+    border: 1px dashed var(--primary);
+}
+
+body.dark-theme .quran-intro {
+    background: rgba(74, 222, 128, 0.05);
+}
+
+.quran-intro i {
+    color: #e63946; /* لون أحمر حيوي */
+    font-size: 2rem; /* كبرناه شوية عشان يبان جماله */
+    margin-bottom: 15px;
+    display: block; /* عشان يجي في النص بالظبط فوق الكلام */
+    animation: heartBeat 1.5s infinite; /* اختيار اختياري: لو عايزه ينبض بنعومة */
+}
+
+/* حركة نبض خفيفة للقلب (اختياري) */
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.quran-intro p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+body.dark-theme .quran-intro p {
+    color: #ddd;
+}
+
+.fadl-box {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-style: italic;
+}
+
+body.dark-theme .plan-body p {
+    color: #f0f0f0 !important; /* لون فاتح جداً ليكون واضحاً */
+    opacity: 0.9;
+}
+
+body.dark-theme .plan-header h3 {
+    color: #ffffff !important;
+}
+
+/* جعل الأيقونة بجانب النص واضحة */
+.plan-detail i {
+    color: #ffca28 !important; /* ذهبي لامع */
+}
+
+.names-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
+
+.name-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-bottom: 5px solid #d4a373; /* حافة ذهبية سفلية */
+    transition: transform 0.3s ease;
+}
+
+body.dark-theme .name-card {
+    background: #252525;
+    border-bottom-color: #ffca28;
+}
+
+.name-card h3 {
+    color: var(--primary);
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.name-description {
+    display: none;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+body.dark-theme .name-description {
+    color: #ccc;
+    border-top-color: #444;
+}
+
+.show-desc-btn {
+    background: rgba(212, 163, 115, 0.1);
+    border: none;
+    color: #d4a373;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 10px auto 0;
+}
+
+/* تنسيق تنبيه الصلاة على النبي */
+.prophet-alert {
+    position: fixed;
+    bottom: -100px; /* مخفي تحت */
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 90%;
+    max-width: 400px;
+}
+
+.prophet-alert.show {
+    bottom: 30px; /* يظهر فوق شوية */
+}
+
+.prophet-alert i {
+    font-size: 1.5rem;
+    color: #ffca28;
+}
+
+.prophet-alert p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+/* تنسيق الإشعار الجديد ليظهر بشكل احترافي */
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: #1e3a29; 
+    color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid #2ecc71;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+    z-index: 10000;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-alert.show {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.custom-alert p {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.custom-alert button {
+    background: #2ecc71;
+    color: #1e3a29;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* تنسيق اسم المطور في الوضع العادي */
+#dev-name-field {
+    color: #1a3c26; /* لون أخضر غامق جداً وواضح */
+    font-weight: bold;
+    padding: 5px 10px;
+    border-bottom: 2px solid #2ecc71; /* خط تحت الاسم يبرزه */
+    transition: all 0.3s ease;
+}
+
+/* تنسيق اسم المطور في الوضع الليلي (Dark Mode) */
+body.dark-theme #dev-name-field {
+    color: #2ecc71; /* لون أخضر فاتح ومضيء يبرز وسط السواد */
+    text-shadow: 0 0 8px rgba(46, 204, 113, 0.6); /* توهج خفيف يخلي الاسم "منور" */
+    border-bottom: 2px solid #ffffff; /* الخط يتحول للأبيض في الليلي */
+}
+
+.zekr-card {
+    display: flex;
+    flex-direction: column; /* ترتيب العناصر تحت بعض */
+    align-items: center; /* توسيط كل اللي جوه الكارد */
+    text-align: center;
+    padding: 30px 20px;
+    position: relative;
+    /* باقي تنسيقاتك للألوان والخلفية */
+}
+
+.info-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #d4af37;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.card-counter {
+    /* أساسيات الدائرة */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+    /* الألوان (ذهبي زي ما طلبت) */
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    
+    /* التوسيط في نص الكارد */
+    display: flex !important; /* فرض العرض كـ flex */
+    align-items: center; /* توسيط الرقم طولياً */
+    justify-content: center; /* توسيط الرقم عرضياً */
+    margin: 20px auto !important; /* auto من اليمين والشمال هي اللي بتجيبها في النص */
+    
+    /* الخط */
+    font-weight: bold;
+    font-size: 22px;
+    cursor: pointer;
+    
+    /* منع أي تداخل قديم */
+    position: static !important; 
+    float: none !important;
+    clear: both;
+}
+
+.navigation-btns {
+    display: flex !important;
+    flex-direction: row !important; /* لضمان الترتيب من اليمين لليوم */
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.btn-main {
+    flex: 1; /* الزرارين قد بعض */
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.challenge-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-right: 5px solid var(--primary);
+}
+
+body.dark-theme .challenge-card { background: #252525; }
+
+.challenge-info h4 { margin: 5px 0; color: var(--primary); }
+
+.challenge-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.challenge-card.completed { border-right-color: #4ade80; opacity: 0.8; }
+.challenge-card.completed .challenge-btn { background: #4ade80; }
+
+.update-card {
+    background-color: #1e1e1e; /* لون غامق يناسب الصورة */
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    color: #ffffff;
+    margin: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.update-card .icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.update-card h3 {
+    color: #4CAF50; /* لون أخضر هادئ مثل المستعمل في موقعك */
+    margin-bottom: 5px;
+}
+
+.update-card p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.feedback-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* ضل ناعم جداً */
+    max-width: 90%;
+    margin: 20px auto;
+    border-top: 5px solid var(--primary);
+}
+
+.feedback-header h3 {
+    color: var(--primary);
+    margin: 10px 0 5px;
+}
+
+.feedback-header p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.input-wrapper input, .input-wrapper textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1.5px solid rgba(45, 106, 79, 0.2);
+    border-radius: 12px;
+    font-family: inherit;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background: #fdfdfd;
+}
+
+.input-wrapper input:focus, .input-wrapper textarea:focus {
+    border-color: var(--secondary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.2);
+}
+
+.modern-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.modern-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(45, 106, 79, 0.3);
+}
+
+
+.input-wrapper {
+    margin-bottom: 15px;
+}
+
+.input-wrapper input, .input-wrapper textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: #252525;
+    border: 1px solid #444;
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    transition: 0.3s;
+    outline: none;
+}
+
+.input-wrapper input:focus, .input-wrapper textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+.modern-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.modern-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+/* حاوية المتتبع */
+.diary-wrapper { background: #fdfaf5; padding: 20px; border-radius: 20px; direction: rtl; }
+.diary-header { text-align: center; margin-bottom: 20px; color: #8b6d31; }
+
+/* التقويم */
+.mini-calendar { background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+/* --- تظبيط جدول المتتبع للموبايل --- */
+.week-days { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    text-align: center; 
+    font-size: 0.75rem; 
+    color: #999; 
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.days-grid { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 10px 5px; /* مسافة متناسقة بالطول والعرض */
+    justify-items: center; /* توسيط الدواير في النص بالظبط */
+}
+
+.day-num { 
+    padding: 0; /* مسحنا البادينج اللي كان مبوظ الدنيا */
+    font-size: 0.9rem; 
+    cursor: pointer; 
+    border-radius: 50%; 
+    transition: 0.3s; 
+    position: relative; 
+    z-index: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 32px; /* مقاس مثالي لشاشة التليفون */
+    height: 32px; 
+}
+
+.day-num.active-day { 
+    background: #ffb703; 
+    color: #fff; 
+    font-weight: bold; 
+}
+
+/* شكل النجمة لما اليوم يكتمل */
+.day-num.completed { 
+    background: transparent !important; 
+    color: #1a432f !important; /* لون الرقم جوه النجمة */
+    font-weight: bold; 
+}
+
+body.dark-theme .day-num.completed { 
+    color: #fff !important; 
+}
+
+.day-num.completed::before {
+    content: '\f005'; 
+    font-family: 'Font Awesome 6 Free'; 
+    font-weight: 900;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size: 35px; /* حجم النجمة مناسب جداً لاحتواء الدائرة */
+    color: #ffd700; 
+    z-index: -1; 
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+/* كروت المهام بالصور */
+.task-card {
+    height: 80px;
+    margin-bottom: 12px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.task-card::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.4); z-index: 1; }
+.task-card h4 { z-index: 2; font-size: 1.1rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+
+/* زر الصح (Checkmark) */
+.check-circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.check-circle.checked { background: #2d6a4f; border-color: #2d6a4f; }
+.check-circle i { display: none; color: #fff; font-size: 1rem; }
+.check-circle.checked i { display: block; }
+
+/* التنقل السفلي */
+.bottom-nav-tracker { display: flex; background: #fff; border-radius: 30px; margin-top: 20px; border: 1px solid #eee; overflow: hidden; }
+.nav-btn { flex: 1; padding: 12px; border: none; background: none; font-weight: bold; color: #999; cursor: pointer; }
+.nav-btn.active { background: #fdf2d5; color: #2d6a4f; border-bottom: 3px solid #2d6a4f; }
+
+/* الأيام القادمة (المقفولة) */
+.locked-day { opacity: 0.3; cursor: not-allowed; filter: grayscale(1); }
+
+/* نجمة الإنجاز في التقويم */
+.achieve-star { position: absolute; top: -5px; right: -5px; font-size: 10px; }
+
+/* إصلاح الوضع الليلي */
+body.dark-theme .diary-wrapper { background: #121212; color: #e0e0e0; }
+body.dark-theme .mini-calendar { background: #1e1e1e; border: 1px solid #333; }
+body.dark-theme .day-num { color: #888; }
+body.dark-theme .active-day { color: #fff; background: #c69b3f; }
+
+body.dark-theme .task-card { 
+    background-color: #222; /* لون احتياطي لو الصورة مختفية */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+body.dark-theme .task-card::before { background: rgba(0,0,0,0.6); } /* تغميق خلفية الصورة */
+body.dark-theme .bottom-nav-tracker { background: #1e1e1e; border-color: #333; }
+body.dark-theme .nav-btn { color: #666; }
+body.dark-theme .nav-btn.active { background: #2c2518; color: #c69b3f; }
+
+/* تحسين شكل زر الصح في الصيام */
+.fasting-card-main {
+    background: #fff; padding: 15px; border-radius: 15px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+body.dark-theme .fasting-card-main { background: #1e1e1e; border: 1px solid #333; }
+
+/* الوضع الليلي - إجباري للكروت */
+body.dark-theme .diary-wrapper { background: #000 !important; color: #fff !important; }
+body.dark-theme .task-card { 
+    border: 1px solid #333; 
+    background-color: #1a1a1a; /* لون احتياطي */
+}
+body.dark-theme .task-card h4 { color: #fff !important; text-shadow: 2px 2px 4px #000; }
+body.dark-theme .fasting-card-main { background: #1a1a1a !important; border: 1px solid #333; }
+body.dark-theme .day-num { color: #666; }
+body.dark-theme .active-day { background: #d4af37 !important; color: #000 !important; }
+body.dark-theme .mini-calendar { background: #111 !important; border: 1px solid #222; }
+
+/* تحسين رؤية الدوائر في كل الأقسام */
+.check-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    /* لون رمادي خفيف للإطار عشان يبان في الوضع الفاتح */
+    border: 2px solid #ccc; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0,0,0,0.02); /* لمسة ظل خفيفة */
+}
+
+/* في كروت الصلاة (لأن الخلفية صورة) هنخلي الإطار أبيض */
+.task-card .check-circle {
+    border-color: #fff;
+    background: transparent;
+}
+
+/* لما نضغط صح */
+.check-circle.checked {
+    background: #27ae60 !important;
+    border-color: #27ae60 !important;
+}
+
+.check-circle i {
+    font-size: 14px;
+    color: #fff;
+    /* التأكد إن علامة الصح ظاهرة فقط عند الضغط */
+    display: none;
+}
+
+.check-circle.checked i {
+    display: block;
+}
+
+/* في الوضع الليلي */
+body.dark-theme .check-circle {
+    border-color: #444;
+    background: rgba(255,255,255,0.05);
+}
+
+/* الأيام المقفولة */
+.locked-day { opacity: 0.15; pointer-events: none; filter: grayscale(1); }
+
+
+/* شريط التنقل الجديد */
+.tracker-nav-scroll {
+    display: flex; gap: 8px; overflow-x: auto;
+    padding: 10px 0; margin-bottom: 15px;
+}
+.t-nav-btn {
+    flex: 0 0 auto; padding: 8px 16px; border-radius: 20px;
+    border: 1px solid #ddd; background: #fff; cursor: pointer;
+}
+.t-nav-btn.active { background: #c69b3f; color: #fff; border-color: #c69b3f; }
+
+/* الحاويات */
+.tracker-section { display: none; }
+.tracker-section.active { display: block; }
+
+/* الكروت العادية (بدون صور) للسنن والأذكار */
+.simple-card {
+    background: #fff; padding: 15px; border-radius: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px; border: 1px solid #eee;
+}
+
+/* روابط القرآن */
+.quran-links { display: grid; gap: 10px; }
+.q-link-card {
+    background: #2d6a4f; color: #fff; padding: 20px;
+    border-radius: 12px; text-align: center; text-decoration: none; font-weight: bold;
+}
+
+/* إصلاح الليلي */
+body.dark-theme .simple-card { background: #1a1a1a; border-color: #333; color: #fff; }
+body.dark-theme .t-nav-btn { background: #222; border-color: #444; color: #aaa; }
+
+.tg-btn {
+    background-color: #0088cc !important;
+    margin-bottom: 10px;
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px; 
+}
+
+/* تنسيق روابط القرآن الكبيرة */
+.quran-links {
+    display: grid;
+    gap: 15px;
+    padding: 20px;
+}
+
+.q-link-card {
+    background: #2d6a4f; /* لون أخضر داكن مناسب للقرآن */
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.q-link-card:hover {
+    transform: scale(1.02);
+    background: #40916c;
+}
+
+/* تنسيق الوضع الليلي للروابط */
+body.dark-theme .q-link-card {
+    background: #1b4332;
+    border: 1px solid #2d6a4f;
+}
+
+/* تأكد من أن التبويبات النشطة تظهر */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- تعريفات الحركة (Animations) --- */
+
+/* نبض هادئ للوضع الفاتح */
+@keyframes pulse-soft-light {
+    0% { transform: scale(1); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    50% { transform: scale(1.015); box-shadow: 0 15px 35px rgba(45, 106, 79, 0.15); }
+    100% { transform: scale(1); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+}
+
+/* نبض متوهج للوضع الليلي */
+@keyframes pulse-soft-dark {
+    0% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-color: rgba(45, 106, 79, 0.3); }
+    50% { transform: scale(1.015); box-shadow: 0 15px 45px rgba(82, 183, 136, 0.25); border-color: rgba(82, 183, 136, 0.5); }
+    100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-color: rgba(45, 106, 79, 0.3); }
+}
+
+/* حركة اهتزاز بسيطة عند الضغط */
+@keyframes click-wobble {
+    0% { transform: scale(0.98); }
+    25% { transform: scale(1.02) rotate(-1deg); }
+    50% { transform: scale(0.98) rotate(1deg); }
+    75% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+/* الكارت الرئيسي */
+.quran-card-modern {
+    background: var(--card-bg, #ffffff); /* يتكيف مع الوضع الليلي */
+    padding: 25px;
+    border-radius: 20px;
+    margin: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 1px solid rgba(45, 106, 79, 0.1);
+        /* إضافة حركة النبض المستمرة */
+    animation: pulse-soft-light 4s infinite ease-in-out;
+    /* جعل أي تغيير في الحجم أو الظل سلس جداً */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body.dark-theme .quran-card-modern {
+    background: #1e1e1e;
+    border-color: #2d6a4f;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card-header h3 { margin: 10px 0; color: #2d6a4f; }
+body.dark-theme .card-header h3 { color: #52b788; }
+
+/* شريط الإنجاز */
+.progress-box { margin: 20px 0; }
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.progress-bar-bg {
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+body.dark-theme .progress-bar-bg { background: #333; }
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2d6a4f, #52b788);
+    box-shadow: 0 0 10px rgba(82, 183, 136, 0.4);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* الأزرار */
+.action-btn-main {
+    background: #2d6a4f;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.action-btn-main:hover {
+    background: #1b4332;
+    transform: translateY(-2px);
+}
+
+.btn-reset-minimal {
+    background: transparent;
+    color: #888;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 0.85em;
+    text-decoration: underline;
+}
+
+.action-btn-main:active {
+    /* يجعل الزر ينضغط للداخل بواقعية */
+    transform: scale(0.95) translateY(3px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background: #1b4332; /* لون أغمق عند الضغط */
+}
+
+/* جعل حركة شريط الإنجاز "نطاطة" (Bouncy) وأكثر حيوية */
+.progress-bar-fill {
+    /* ... احتفظ بالخصائص القديمة ... */
+    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* --- تحسينات الوضع الليلي --- */
+body.dark-theme .quran-card-modern {
+    background: #181818; /* خلفية أغمق لزيادة التباين */
+    border: 1px solid #2d6a4f; /* حدود خضراء واضحة */
+    
+    /* تطبيق حركة النبض المتوهجة الخاصة بالوضع الليلي */
+    animation-name: pulse-soft-dark; 
+    
+    /* ظل أعمق وأقوى */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* تحسين خلفية الشريط في الوضع الليلي */
+body.dark-theme .progress-bar-bg {
+    background: #2a2a2a;
+    border: 1px solid #3d3d3d; /* إضافة حدود خفيفة للشريط الفارغ */
+}
+
+/* إضافة توهج للنص في الوضع الليلي */
+body.dark-theme .card-header h3,
+body.dark-theme .parts-counter strong {
+    color: #52b788;
+    text-shadow: 0 0 10px rgba(82, 183, 136, 0.4); /* تأثير Glow للنص */
+}
+
+/* حاوية الزينة */
+.ramadan-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none; /* عشان متغطيش على الأزرار وتعرف تدوس تحتها */
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* العنصر الواحد (الفانوس أو النجمة) */
+.zina-item {
+    font-size: 25px;
+    position: relative;
+    transform-origin: top center; /* عشان يتهز من فوق */
+    animation: swing-zina 3s infinite ease-in-out;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* توهج خفيف */
+}
+
+/* إضافة خيط رفيع فوق كل عنصر */
+.zina-item::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 1px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* حركة الاهتزاز (Swing) */
+@keyframes swing-zina {
+    0% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    100% { transform: rotate(-10deg); }
+}
+
+/* تحسين التوهج في الوضع الليلي */
+body.dark-theme .zina-item {
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+/* --- تحديث الزينة لضبط المكان --- */
+.ramadan-decoration {
+    position: absolute;
+    top: 5px; /* نزلناها شوية عشان التاريخ */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none; /* مهم جداً عشان متمنعش الضغط */
+    z-index: 10; /* قللنا الـ z-index عشان التاريخ يظهر فوقها */
+    overflow: hidden;
+}
+
+/* --- تصميم قصاصات الاحتفال الحقيقية --- */
+#confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    opacity: 0;
+}
+
+/* حركة القصاصات وهي نازلة */
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.forum-container {
+    padding: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.forum-header { text-align: center; margin-bottom: 20px; }
+.forum-header h3 { color: #52b788; text-shadow: 0 0 10px rgba(82, 183, 136, 0.3); }
+
+.post-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(82, 183, 136, 0.2);
+    margin-bottom: 25px;
+}
+
+#dua-input {
+    width: 100%;
+    height: 80px;
+    background: transparent;
+    border: none;
+    color: white;
+    resize: none;
+    font-family: inherit;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.error-text {
+    color: #ff4d4d;
+    font-size: 0.85em;
+    margin-top: 10px;
+    display: none;
+}
+
+/* شكل بطاقة الدعاء */
+.dua-card {
+    background: rgba(45, 106, 79, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border-right: 4px solid #52b788;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.app-banner {
+    background-color: #1b4332; /* لون أخضر غامق زي ستايل موقعك */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.download-btn {
+    background-color: #ffca28; /* لون أصفر ذهبي ملفت */
+    color: #000;
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.close-banner {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.dua-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: rgba(45, 106, 79, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border-right: 4px solid var(--secondary);
+}
+.dua-content p { margin: 0 0 8px 0; line-height: 1.6; }
+.dua-time { color: #888; font-size: 0.8em; }
+.dua-actions {
+    display: flex;
+    gap: 10px;
+    margin-right: 15px;
+}
+.dua-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #52b788;
+    transition: 0.2s;
+}
+.dua-actions button.delete { color: #ff4d4d; }
+.dua-actions button:hover { transform: scale(1.15); }
+
+/* --- تظبيط كارت الفيدباك في الوضع الليلي --- */
+body.dark-theme .feedback-card {
+    background-color: #1e1e1e;
+    border-top: 5px solid #4ade80;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+body.dark-theme .feedback-header h3 { color: #4ade80; }
+body.dark-theme .feedback-header p { color: #aaa; }
+body.dark-theme .input-wrapper input,
+body.dark-theme .input-wrapper textarea {
+    background-color: #252525;
+    border: 1px solid #444;
+    color: #fff;
+}
+body.dark-theme .input-wrapper input:focus,
+body.dark-theme .input-wrapper textarea:focus {
+    border-color: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.3);
+}
+
+/* =========================================
+   تصميم قسم مواقيت الصلاة (الاحترافي)
+   ========================================= */
+.prayer-header-card {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: -30px; /* لدمجها مع الكارت اللي تحتها */
+    padding-bottom: 40px;
+}
+
+.city-selector {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.city-selector select {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px;
+    font-family: inherit;
+}
+
+.city-selector select option {
+    color: #333;
+}
+
+/* =========================================
+   التصميم الإبداعي الفخم لقسم الصلاة
+   ========================================= */
+.next-prayer-card {
+    background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+    background-image: url('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?q=80&w=800');
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+    margin: 0 15px 25px;
+    box-shadow: 0 15px 35px rgba(45, 106, 79, 0.4);
+    overflow: hidden;
+    position: relative;
+    border: 2px solid rgba(255, 215, 0, 0.3); /* إطار ذهبي خفيف */
+}
+
+.prayer-glass-effect {
+    background: rgba(0, 0, 0, 0.5); /* تعتيم أنيق للصورة */
+    backdrop-filter: blur(8px);
+    padding: 40px 20px;
+    color: white;
+    text-align: center;
+    border-radius: 25px;
+}
+
+#next-prayer-name { 
+    font-size: 2.5rem; 
+    margin: 10px 0; 
+    color: #ffd700; 
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); 
+    font-weight: 900;
+}
+
+#next-prayer-time { 
+    font-size: 3.5rem; 
+    font-weight: bold; 
+    margin-bottom: 15px; 
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+#prayer-countdown { 
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05)); 
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    display: inline-block; 
+    padding: 10px 25px; 
+    border-radius: 50px; 
+    font-weight: bold; 
+    font-size: 1.1rem;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* شبكة الصلوات بتصميم عصري */
+.today-prayers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 10px 15px;
+}
+
+.prayer-time-box {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px 10px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border: 1px solid rgba(45, 106, 79, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-theme .prayer-time-box { 
+    background: #1e1e1e; 
+    border-color: #333; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
+}
+
+.prayer-time-box i { font-size: 1.8rem; color: #52b788; margin-bottom: 10px; transition: 0.3s; }
+.prayer-time-box .p-name { font-weight: bold; font-size: 0.95rem; color: #666; margin-bottom: 5px; }
+.prayer-time-box .p-time { font-size: 1.2rem; color: var(--primary); font-weight: 900; }
+
+body.dark-theme .prayer-time-box .p-name { color: #bbb; }
+body.dark-theme .prayer-time-box .p-time { color: #4ade80; }
+
+/* تأثير الصلاة القادمة (Active) - السحر كله هنا */
+.prayer-time-box.active-prayer {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transform: translateY(-10px) scale(1.05); /* بتكبر وتطلع لفوق */
+    box-shadow: 0 15px 30px rgba(45, 106, 79, 0.4);
+    border: none;
+}
+
+body.dark-theme .prayer-time-box.active-prayer {
+    background: linear-gradient(135deg, #1b4332, #2d6a4f);
+    box-shadow: 0 15px 30px rgba(74, 222, 128, 0.2);
+    border: 1px solid #4ade80;
+}
+
+/* تلوين النص والأيقونة للأبيض في الكارت النشط */
+.prayer-time-box.active-prayer i,
+.prayer-time-box.active-prayer .p-name,
+.prayer-time-box.active-prayer .p-time {
+    color: #ffffff !important;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* إضافة لمحة إضاءة خفيفة (Shine) للكارت النشط */
+.prayer-time-box.active-prayer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+
+/* جدول الإمساكية */
+.table-responsive { overflow-x: auto; background: white; border-radius: 15px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+body.dark-theme .table-responsive { background: #1e1e1e; }
+.prayer-table { width: 100%; border-collapse: collapse; min-width: 500px; text-align: center; }
+.prayer-table th { background: rgba(45, 106, 79, 0.1); color: var(--primary); padding: 12px; font-size: 0.9rem; }
+body.dark-theme .prayer-table th { background: rgba(74, 222, 128, 0.1); color: #4ade80; }
+.prayer-table td { padding: 10px; border-bottom: 1px solid #eee; font-size: 0.85rem; color: #444; }
+body.dark-theme .prayer-table td { border-bottom-color: #333; color: #ccc; }
+
+
+/* =========================================
+   تصميم النوافذ المنبثقة المخصصة (Custom Modals)
+   ========================================= */
+.custom-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 10000;
+}
+.custom-modal-box {
+    background: white; width: 90%; max-width: 350px;
+    padding: 30px 20px; border-radius: 20px; text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    transform: scale(0.9); animation: modalPop 0.3s ease forwards;
+}
+body.dark-theme .custom-modal-box { background: #1e1e1e; color: white; border: 1px solid #333; }
+@keyframes modalPop { to { transform: scale(1); } }
+
+.modal-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px; font-size: 25px; }
+.modal-icon.warning { background: #fff3cd; color: #ffc107; }
+.modal-icon.edit { background: #d1ecf1; color: #17a2b8; }
+body.dark-theme .modal-icon.warning { background: rgba(255, 193, 7, 0.2); }
+body.dark-theme .modal-icon.edit { background: rgba(23, 162, 184, 0.2); }
+
+.custom-modal-box h3 { margin: 0 0 10px; color: #333; }
+body.dark-theme .custom-modal-box h3 { color: #fff; }
+.custom-modal-box p { color: #666; margin-bottom: 25px; font-size: 0.95rem; }
+body.dark-theme .custom-modal-box p { color: #aaa; }
+
+#prompt-input { width: 100%; box-sizing: border-box; padding: 15px; border-radius: 12px; border: 1px solid #ccc; font-family: inherit; margin-bottom: 20px; resize: none; background: #f9f9f9; }
+body.dark-theme #prompt-input { background: #252525; border-color: #444; color: white; }
+
+.modal-actions { display: flex; gap: 10px; }
+.modal-actions button { flex: 1; padding: 12px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.btn-danger { background: #e63946; color: white; }
+.btn-success { background: #2d6a4f; color: white; }
+.btn-cancel { background: #e0e0e0; color: #333; }
+body.dark-theme .btn-cancel { background: #333; color: #ccc; }
+
+/* --- زر القلب العائم --- */
+.floating-heart-btn {
+    position: fixed;
+    bottom: 80px; /* فوق القائمة السفلية لو في */
+    left: 20px;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #ff4b4b, #ff0000);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    cursor: pointer;
+    z-index: 999;
+    animation: heartBeat 2s infinite;
+}
+
+/* نافذة الآيات */
+.daily-msg-box {
+    background: url('https://www.transparenttextures.com/patterns/arabesque.png'), linear-gradient(135deg, #ffffff, #fdfbf7) !important;
+}
+body.dark-theme .daily-msg-box {
+    background: url('https://www.transparenttextures.com/patterns/arabesque.png'), linear-gradient(135deg, #1e1e1e, #2a2a2a) !important;
+}
+.heart-icon { background: rgba(255, 75, 75, 0.1) !important; color: #ff4b4b !important; }
+.quran-text {
+    font-size: 1.3rem !important;
+    line-height: 1.8;
+    color: var(--primary);
+    font-weight: bold;
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+}
+body.dark-theme .quran-text { color: #52b788; }
+
+/* --- كارت الراديو --- */
+.radio-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--secondary);
+}
+body.dark-theme .radio-card { background: #1e1e1e; border-top-color: #4ade80; }
+.radio-card h3 { color: var(--primary); margin-top: 0; }
+body.dark-theme .radio-card h3 { color: #4ade80; }
+
+/* --- البوصلة --- */
+.qibla-card {
+    background: white; border-radius: 20px; padding: 25px 20px;
+    margin-top: 25px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+body.dark-theme .qibla-card { background: #1e1e1e; }
+.warning-text { font-size: 0.8rem; color: #e63946; background: rgba(230, 57, 70, 0.1); padding: 10px; border-radius: 10px; }
+.compass-container {
+    width: 200px; height: 200px; margin: 20px auto;
+    border: 5px solid var(--primary); border-radius: 50%;
+    position: relative; background: url('https://upload.wikimedia.org/wikipedia/commons/1/18/Compass_rose_pale.svg') no-repeat center;
+    background-size: contain;
+}
+.compass-arrow {
+    position: absolute; top: 10px; left: 50%;
+    transform: translateX(-50%); font-size: 30px;
+    transition: transform 0.2s ease-out; transform-origin: center 90px;
+}
+
+/* --- زر المشاركة العائم --- */
+.floating-share-btn {
+    position: fixed;
+    bottom: 145px; /* رفعناه فوق زرار القلب بمسافة متناسقة */
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #FFB703, #F5A623); /* لون ذهبي أنيق */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    box-shadow: 0 4px 15px rgba(255, 183, 3, 0.4);
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.3s;
+}
+
+.floating-share-btn:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* =========================================
+   تصميم صفحة المطور - النسخة العصرية (اللمسة الأخيرة)
+   ========================================= */
+.dev-card-modern {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 25px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 20px auto;
+    max-width: 92%;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    animation: fadeInCard 0.8s ease-out;
+}
+
+.dev-avatar-ring {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 15px;
+    /* حلقة ملونة شيك جداً حوالين الصورة */
+    background: linear-gradient(45deg, #FFD700, #ff8c00, #4facfe);
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.2);
+}
+
+.dev-avatar-main {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.protected-name {
+    font-size: 24px;
+    font-weight: 800;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    /* لون الاسم متدرج */
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    -webkit-background-clip: text;
+  background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.dev-bio {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.dua-card {
+    background: rgba(255, 215, 0, 0.08);
+    border: 1px dashed #FFD700;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 14.5px;
+    color: #b8860b;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.dev-social {
+    margin-bottom: 25px;
+}
+
+/* الزرار الجديد - أسود فخم يليق بـ Linktree */
+.modern-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(45deg, #2b2b2b, #4a4a4a);
+    color: #fff !important;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.modern-link-btn i {
+    font-size: 18px;
+}
+
+.modern-link-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dev-footer {
+    font-size: 13px;
+    color: #888;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.dev-footer p {
+    margin: 0 0 8px 0;
+}
+
+.version-badge {
+    display: inline-block;
+    background: #e0f7fa;
+    color: #00838f;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* الزرار العائم */
+.floating-download-btn {
+    position: fixed;
+    bottom: 90px; /* تقدر تغير الرقم ده عشان ترفعه أو تنزله */
+    left: 20px; /* على الشمال */
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+    cursor: pointer;
+    z-index: 999;
+    animation: bounceBtn 2s infinite; /* حركة خفيفة تلفت الانتباه */
+}
+
+/* خلفية النافذة المنبثقة المظلمة */
+.download-modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+/* المربع الأبيض بتاع النافذة */
+.download-modal-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 350px;
+    text-align: center;
+    position: relative;
+    animation: scaleUp 0.3s ease;
+}
+
+/* علامة الإغلاق X */
+.close-download {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+/* زرار التحميل جوه النافذة */
+.modal-download-link {
+    display: inline-block;
+    margin-top: 15px;
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: #fff !important;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+/* حركات الأنيميشن */
+@keyframes bounceBtn {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-8px);}
+    60% {transform: translateY(-4px);}
+}
+@keyframes scaleUp {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+/* =========================================
+   تصميم زرار التحميل العائم - أعلى الكل
+   ========================================= */
+.floating-download-btn {
+    position: fixed;
+    /* السر هنا! زودنا الرقم جداً عشان نرفعه أعلى من كل الأزرار التانية رأسيّاً */
+    bottom: 240px !important; 
+    left: 25px; /* حركناه لليمين شوية عشان ميكونش لازق في حافة الشاشة */
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: white !important;
+    width: 60px; /* كبرناه شوية عشان يبان إنه "الزرار الأهم" */
+    height: 60px;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px; /* كبرنا الأيقونة */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* ظل أفخم */
+    cursor: pointer;
+    /* الترتيب الطبقي - فوق الكل بلا منازع */
+    z-index: 1000000 !important; 
+    animation: bounceBtn 2s infinite;
+    border: 3px solid #fff; /* إطار أبيض شيك جداً */
+    pointer-events: auto !important;
+    transition: all 0.3s ease;
+}
+
+/* النافذة المنبثقة - لازم تكون أعلى حاجة في الموقع كله */
+.download-modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000000 !important; /* أعلى طبقة على الإطلاق */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85); /* سواد أفخم */
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ======= تحسينات عامة للشكل ======= */
+
+/* الأزرار الرئيسية */
+.btn-main {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 15px rgba(26,92,58,0.25);
+    transition: all 0.2s ease;
+}
+
+.btn-main:active {
+    transform: scale(0.97) translateY(1px);
+}
+
+/* المنيو الجانبي */
+.side-menu {
+    border-left: 1px solid rgba(26,92,58,0.1);
+}
+
+.menu-header {
+    font-size: 20px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+  background-clip: text;
+    -webkit-text-fill-color:
+    transparent;
+    border-bottom-color: rgba(26,92,58,0.15);
+}
+
+.menu-items a {
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    border-bottom: none;
+    padding: 13px 15px;
+    transition: background 0.2s, padding-right 0.2s;
+}
+
+.menu-items a:hover {
+    background: rgba(26,92,58,0.07);
+    padding-right: 22px;
+}
+
+body.dark-theme .menu-items a:hover {
+    background: rgba(74,222,128,0.08);
+}
+
+/* عناوين الأقسام */
+.title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--primary);
+    text-align: center;
+    margin: 20px 0 10px;
+    letter-spacing: -0.5px;
+}
+
+body.dark-theme .title {
+    color: #4ade80;
+}
+
+/* كروت التحدي */
+.challenge-card {
+    border-right: 4px solid var(--accent);
+    border-radius: 18px;
+    padding: 18px 16px;
+}
+
+/* السبحة - إزالة التأثير القديم وتحديثه */
+@keyframes pulseShadow {
+    0%   { box-shadow: 0 0 0 10px rgba(26,92,58,0.10), 0 0 0 18px rgba(26,92,58,0.06), 0 20px 50px rgba(26,92,58,0.18); }
+    70%  { box-shadow: 0 0 0 18px rgba(26,92,58,0.04), 0 0 0 28px rgba(26,92,58,0.02), 0 20px 50px rgba(26,92,58,0.12); }
+    100% { box-shadow: 0 0 0 10px rgba(26,92,58,0.10), 0 0 0 18px rgba(26,92,58,0.06), 0 20px 50px rgba(26,92,58,0.18); }
+}
+
+/* أيقونة القمر/الشمس في الهيدر */
+.dark-mode-toggle-icon i {
+    font-size: 20px;
+}
+
+/* إصلاح ألوان التاريخ في الشريط العلوي */
+.date-container #hijri-date,
+.date-container #gregorian-date {
+    color: #ffffff !important; /* لون أبيض ناصع في الوضع العادي */
+    font-weight: bold;
+}
+
+body.dark-theme .date-container #hijri-date,
+body.dark-theme .date-container #gregorian-date {
+    color: #4ade80 !important; /* لون أخضر فاتح جداً للوضع الليلي */
+}
+
+/* إصلاح لون أيقونة القائمة (الثلاث شرط) لتكون واضحة */
+.menu-btn .bar {
+    background-color: #ffffff !important;
+}
+
+body.dark-theme .menu-btn .bar {
+    background-color: #4ade80 !important;
+}
+
+/* --- تصميم بوصلة القبلة العصري --- */
+.compass-outer {
+    width: 260px;
+    height: 260px;
+    margin: 25px auto;
+    border-radius: 50%;
+    padding: 15px;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    box-shadow: 10px 10px 20px #d1d1d1, -10px -10px 20px #ffffff;
+    transition: all 0.3s ease;
+}
+
+.compass-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+    border: 4px solid var(--primary);
+    /* خلفية للبوصلة توضح الاتجاهات الأربعة */
+    background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="none" stroke="%23ccc" stroke-width="0.5" stroke-dasharray="2, 2"/><text x="50" y="15" font-family="Arial" font-size="8" fill="%23999" text-anchor="middle">شمال</text><text x="50" y="92" font-family="Arial" font-size="8" fill="%23999" text-anchor="middle">جنوب</text><text x="88" y="53" font-family="Arial" font-size="8" fill="%23999" text-anchor="middle">شرق</text><text x="12" y="53" font-family="Arial" font-size="8" fill="%23999" text-anchor="middle">غرب</text></svg>') no-repeat center center;
+    background-size: cover;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* تأثير التوهج الأخضر عند مواجهة القبلة */
+.compass-inner.aligned {
+    border-color: #28a745;
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.5);
+}
+
+.compass-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--primary);
+    z-index: 10;
+}
+
+.kaaba-pointer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.1s ease-out;
+    z-index: 5;
+}
+
+.kaaba-icon {
+    font-size: 30px;
+    text-align: center;
+    margin-top: -12px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.pointer-line {
+    width: 4px;
+    height: 50%;
+    background: linear-gradient(to bottom, var(--primary), transparent);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+.compass-inner.aligned .pointer-line {
+    background: linear-gradient(to bottom, #28a745, transparent);
+}
+
+.qibla-success {
+    color: #28a745;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    height: 25px;
+}
+
+.qibla-success.show {
+    opacity: 1;
+}
+
+.qibla-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    gap: 15px;
+}
+
+.qibla-details .detail-box {
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.qibla-details .detail-box span {
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.qibla-details .detail-box strong {
+    color: var(--primary);
+    font-size: 18px;
+}
+
+/* --- الوضع الليلي لبوصلة القبلة --- */
+body.dark-theme .compass-outer {
+    background: linear-gradient(145deg, #1f1f1f, #151515);
+    box-shadow: 10px 10px 20px #0c0c0c, -10px -10px 20px #242424;
+}
+body.dark-theme .compass-inner {
+    background: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="48" fill="none" stroke="%23444" stroke-width="0.5" stroke-dasharray="2, 2"/><text x="50" y="15" font-family="Arial" font-size="8" fill="%23666" text-anchor="middle">شمال</text><text x="50" y="92" font-family="Arial" font-size="8" fill="%23666" text-anchor="middle">جنوب</text><text x="88" y="53" font-family="Arial" font-size="8" fill="%23666" text-anchor="middle">شرق</text><text x="12" y="53" font-family="Arial" font-size="8" fill="%23666" text-anchor="middle">غرب</text></svg>') no-repeat center center;
+    border-color: #4ade80;
+}
+body.dark-theme .compass-inner.aligned {
+    border-color: #28a745;
+}
+body.dark-theme .compass-center,
+body.dark-theme .qibla-details .detail-box strong {
+    color: #4ade80;
+}
+body.dark-theme .pointer-line {
+    background: linear-gradient(to bottom, #4ade80, transparent);
+}
+body.dark-theme .compass-inner.aligned .pointer-line {
+    background: linear-gradient(to bottom, #28a745, transparent);
+}
+body.dark-theme .qibla-details .detail-box {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+/* =========================================
+   تصميم قسم الذكاء الاصطناعي (ChatGPT Style)
+========================================= */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.dark-theme .chat-container {
+    background: #1e1e1e;
+    border-color: rgba(255,255,255,0.1);
+}
+
+.chat-container .chat-header {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.dark-theme .chat-container .chat-header {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.chat-container .chat-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--primary, #28a745);
+}
+
+.chat-container .chat-header p {
+    margin: 5px 0 0;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scroll-behavior: smooth;
+}
+
+.chat-message {
+    display: flex;
+    gap: 12px;
+    max-width: 100%;
+    animation: fadeInChat 0.3s ease;
+}
+
+/* رسالة المستخدم تكون على اليسار في الواجهة العربية */
+.chat-message.user {
+    flex-direction: row-reverse;
+}
+
+.chat-message .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+}
+
+.chat-message.bot .avatar {
+    background: #10a37f; /* لون ChatGPT الأخضر المميز */
+    color: white;
+}
+
+.chat-message.user .avatar {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.dark-theme .chat-message.user .avatar {
+    background: #333;
+    color: #eee;
+}
+
+.chat-message .message-content {
+    padding: 12px 16px;
+    border-radius: 12px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    word-wrap: break-word;
+    max-width: 85%;
+}
+
+.chat-message.bot .message-content {
+    background: rgba(0,0,0,0.03);
+    color: #333;
+    border-top-right-radius: 2px;
+}
+
+.dark-theme .chat-message.bot .message-content {
+    background: rgba(255,255,255,0.05);
+    color: #eee;
+}
+
+.chat-message.user .message-content {
+    background: #10a37f;
+    color: white;
+    border-top-left-radius: 2px;
+}
+
+.chat-input-area {
+    padding: 10px 15px;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.dark-theme .chat-input-area {
+    background: #1e1e1e;
+}
+
+.chat-input-area .input-wrapper {
+    display: flex;
+    align-items: flex-end;
+    background: #f4f4f4;
+    border-radius: 24px;
+    padding: 8px 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.dark-theme .chat-input-area .input-wrapper {
+    background: #2a2a2a;
+    border-color: rgba(255,255,255,0.1);
+}
+
+.chat-input-area .input-wrapper:focus-within {
+    border-color: #10a37f;
+    background: #fff;
+}
+
+.dark-theme .chat-input-area .input-wrapper:focus-within {
+    background: #1e1e1e;
+}
+
+#user-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    resize: none;
+    padding: 10px 8px;
+    font-size: 1rem;
+    color: inherit;
+    outline: none;
+    max-height: 120px;
+    overflow-y: auto;
+    font-family: inherit;
+}
+
+#send-btn {
+    background: #10a37f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+#send-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.dark-theme #send-btn:disabled {
+    background: #555;
+}
+
+/* تأثير التفكير (النقاط المتحركة) */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 5px 0;
+}
+.typing-indicator span {
+    width: 6px;
+    height: 6px;
+    background: #888;
+    border-radius: 50%;
+    animation: bounceChat 1.4s infinite ease-in-out both;
+}
+.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounceChat {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+@keyframes fadeInChat {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   نظام التحقق من التحديثات + ما الجديد
+   ========================================= */
+.update-check-box {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+}
+body.dark-theme .update-check-box { border-top-color: rgba(255,255,255,0.1); }
+
+.update-check-btn {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.update-check-btn:hover { background: var(--primary); color: #fff; }
+.update-check-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.update-check-btn i { margin-left: 6px; }
+.update-check-btn.spinning i { animation: spinIcon 1s linear infinite; }
+@keyframes spinIcon { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.update-status { margin-top: 12px; font-size: 14px; font-weight: 600; min-height: 20px; }
+.update-status.checking { color: #888; }
+.update-status.up-to-date { color: #28a745; }
+.update-status.available { color: #e67e22; }
+.update-status.error { color: #dc3545; }
+
+.update-status .update-download-link {
+    display: inline-block;
+    margin-top: 10px;
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: #fff !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.whats-new-box { }
+.whats-new-icon { background: rgba(40,167,69,0.12); color: #28a745; }
+.whats-new-list { list-style: none; padding: 0; margin: 10px 0 20px; text-align: right; }
+.whats-new-list li {
+    background: #f0fdf4;
+    border-right: 4px solid var(--primary);
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+body.dark-theme .whats-new-list li { background: rgba(255,255,255,0.05); color: #eee; }
+
+/* صورة المطور الحقيقية */
+.dev-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
+
+/* شبكة أزرار التواصل الجديدة */
+.dev-social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.social-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff !important;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.18);
+    transition: transform 0.2s ease;
+}
+
+.social-btn:active { transform: scale(0.92); }
+
+.social-btn.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+.social-btn.facebook { background: linear-gradient(135deg, #1877F2, #0d5dc7); }
+.social-btn.instagram { background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); }
+
+.copy-link-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 20px;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+
+.copy-link-btn:active { background: #f0f0f0; }
+.copy-link-btn i { font-size: 11px; }
+
+.dark-theme .copy-link-btn { color: #aaa; }
+.dark-theme .copy-link-btn:active { background: #2a2a2a; }
+
+.social-hint {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.6;
+    margin: 5px 10px 20px;
+}
+.dark-theme .social-hint { color: #777; }
+
+/* ترتيب نظيف للأزرار العائمة - بدون تزاحم */
+.floating-download-btn,
+.floating-share-btn,
+.floating-heart-btn {
+    width: 54px !important;
+    height: 54px !important;
+    right: 20px !important;
+    left: auto !important;
+}
+.floating-download-btn { bottom: 160px !important; z-index: 1000 !important; }
+.floating-share-btn    { bottom: 95px  !important; z-index: 999  !important; }
+.floating-heart-btn    { bottom: 30px  !important; z-index: 998  !important; }
+
+/* إجبار حاوية التصويت على إظهار المحتوى بالكامل */
+#votingSection .poll-container {
+    width: 100%;
+    min-height: 650px; 
+    overflow: visible !important; 
+    padding-bottom: 20px;
+}
+
+/* تعديل إطار StrawPoll ليأخذ الارتفاع المناسب */
+#votingSection .strawpoll-embed iframe {
+    height: 650px !important;
+    min-height: 650px !important;
+}
+
+/* تصميم كارت اقتراح الميزات الجديد */
+.suggest-feature-card {
+    background: linear-gradient(135deg, rgba(26,92,58,0.08) 0%, rgba(45,138,94,0.15) 100%);
+    border: 1px dashed var(--primary);
+    border-radius: 18px;
+    padding: 22px 18px;
+    text-align: center;
+    margin: 20px auto 10px;
+    max-width: 640px;
+    box-shadow: 0 4px 15px rgba(26,92,58,0.05);
+}
+
+body.dark-theme .suggest-feature-card {
+    background: rgba(74,222,128,0.05);
+    border-color: #4ade80;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.suggest-icon {
+    font-size: 28px;
+    color: var(--accent, #c9973a);
+    margin-bottom: 8px;
+}
+
+.suggest-feature-card h3 {
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin: 0 0 8px 0;
+    font-weight: bold;
+}
+
+body.dark-theme .suggest-feature-card h3 {
+    color: #4ade80;
+}
+
+.suggest-feature-card p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+body.dark-theme .suggest-feature-card p {
+    color: #ccc;
+}
+
+.suggest-whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25D366;
+    color: white !important;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.suggest-whatsapp-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* تصميم ملاحظة إخلاء المسؤولية أسفل الشات الذكي */
+.ai-disclaimer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #777;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.04);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 8px;
+    border-radius: 0 0 12px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1.4;
+}
+
+body.dark-theme .ai-disclaimer {
+    color: #999;
+    background: rgba(255, 255, 255, 0.02);
+    border-top-color: rgba(255, 255, 255, 0.04);
+}
+
+.ai-disclaimer i {
+    color: var(--accent, #c9973a);
+    font-size: 0.8rem;
+}
+
+/* تنسيق أزرار النسخ في الأذكار */
+.copy-action-btn {
+    background: rgba(45, 106, 79, 0.1);
+    color: var(--primary, #2d6a4f);
+    border: 1px solid var(--primary, #2d6a4f);
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.copy-action-btn:hover {
+    background: var(--primary, #2d6a4f);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+}
+
+.copy-action-btn:active {
+    transform: scale(0.96);
+}
+
+body.dark-theme .copy-action-btn {
+    background: rgba(74, 222, 128, 0.1);
+    color: #4ade80;
+    border-color: #4ade80;
+}
+
+body.dark-theme .copy-action-btn:hover {
+    background: #4ade80;
+    color: #121212 !important;
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+}
+
+/* =========================================
+   تحديث واجهة الذكاء الاصطناعي (أحدث نسخة للتغطية الفورية)
+   ========================================= */
+#fatwa-tab.tab-content.active {
+    display: flex !important;
+    flex-direction: column !important;
+    height: calc(100dvh - 145px) !important;
+    margin: -5px -10px 0 -10px !important;
+}
+
+.chat-container {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    width: 100% !important;
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    height: 100% !important;
+}
+
+.dark-theme .chat-container {
+    background: #1e1e1e !important;
+    border-color: rgba(255,255,255,0.1) !important;
+}
+
+.chat-box {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    scroll-behavior: smooth !important;
+}
+
+.chat-input-area {
+    padding: 10px 15px !important;
+    background: #ffffff !important;
+    flex-shrink: 0 !important;
+}
+
+.dark-theme .chat-input-area {
+    background: #1e1e1e !important;
+}
+
+.ai-disclaimer {
+    text-align: center !important;
+    font-size: 0.7rem !important;
+    color: #777 !important;
+    padding: 6px 10px !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    line-height: 1.3 !important;
+    flex-shrink: 0 !important;
+    border-radius: 0 !important;
+    margin-top: 0 !important;
+}
+
+body.dark-theme .ai-disclaimer {
+    color: #999 !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-top-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.ai-disclaimer i {
+    color: var(--accent, #c9973a) !important;
+    font-size: 0.75rem !important;
+}
+
+/* تصميم نافذة التحميل المنبثقة */
+.download-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.download-modal-box {
+    background: #ffffff;
+    width: 85%;
+    max-width: 360px;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: modalScaleUp 0.3s ease;
+}
+
+body.dark-theme .download-modal-box {
+    background: #1e293b;
+    color: #f8fafc;
+}
+
+.download-icon {
+    font-size: 45px;
+    color: #2d6a4f;
+    margin-bottom: 12px;
+}
+
+.download-modal-box h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.download-desc {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+body.dark-theme .download-desc {
+    color: #94a3b8;
+}
+
+.download-status-badge {
+    background: #ecfdf5;
+    color: #059669;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+body.dark-theme .download-status-badge {
+    background: rgba(5, 150, 105, 0.2);
+    color: #34d399;
+}
+
+.download-subtext {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+body.dark-theme .download-subtext {
+    color: #cbd5e1;
+}
+
+.close-download-btn {
+    background: #2d6a4f;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.close-download-btn:hover {
+    background: #1b4332;
+}
+
+@keyframes modalScaleUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* زر تثبيت التطبيق في القائمة الجانبية */
+.side-menu .tab-link.install-app-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 12px 6px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #2d6a4f, #40916c);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(45, 106, 79, 0.35);
+    animation: installPulse 2.4s ease-in-out infinite;
+}
+.side-menu .tab-link.install-app-link[hidden] { display: none; }
+.install-app-link:active { transform: scale(0.97); }
+.install-app-link .install-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+.install-app-link .install-text { display: flex; flex-direction: column; line-height: 1.4; }
+.install-app-link .install-text strong { font-size: 15px; }
+.install-app-link .install-text small { font-size: 12px; opacity: 0.85; }
+@keyframes installPulse {
+    0%, 100% { box-shadow: 0 6px 16px rgba(45, 106, 79, 0.35); }
+    50% { box-shadow: 0 6px 22px rgba(64, 145, 108, 0.6); }
+}
